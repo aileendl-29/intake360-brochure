@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Flipbook</title>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
-
 <style>
+/* This is the new, grey background */
 body {
   margin: 0;
-  background: #ffffff;
+  background: #f0f0f0; /* Changed from white to light grey */
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -26,19 +17,21 @@ body {
   justify-content: center;
 }
 
-/* This gives the book its size */
 #flipbook {
   width: 900px;
   height: 600px;
+  
+  /* This new line adds a shadow, making it look like a real book */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
 }
 
-/* This makes images fill their page */
+/* This makes the image fill its page */
 #flipbook img {
   width: 100%;
   height: 100%;
 }
 
-/* This makes the blank covers white */
+/* This gives your new blank covers a white background */
 #flipbook > div:first-child,
 #flipbook > div:last-child {
   background: #fff;
@@ -73,59 +66,3 @@ body {
   }
 }
 </style>
-
-</head>
-
-<body>
-
-<div id="flipbook-wrapper">
-  <div id="flipbook">
-    <div></div> <div class="double"><img src="page_1.jpg"></div>
-    <div class="double"><img src="page_2.jpg"></div>
-    <div class="double"><img src="page_3.jpg"></div>
-    <div class="double"><img src="page_4.jpg"></div>
-    <div class="double"><img src="page_5.jpg"></div>
-
-    <div></div> </div>
-</div>
-
-<button id="fullscreen-btn" onclick="toggleFullscreen()">Fullscreen</button>
-
-<script>
-$(document).ready(function() {
-
-  $('#flipbook').turn({
-    width: 900,
-    height: 600,
-    autoCenter: true,
-    display: 'double',
-    elevation: 50,
-    gradients: true,
-    duration: 800
-  });
-
-  /* Responsiveness */
-  $(window).on('resize', function() {
-    var wrapperWidth = $('#flipbook-wrapper').width();
-    if (wrapperWidth < 900) {
-      $('#flipbook').turn('size', wrapperWidth, wrapperWidth / 1.5);
-    } else {
-      $('#flipbook').turn('size', 900, 600);
-    }
-  }).trigger('resize');
-
-});
-
-// Fullscreen function
-function toggleFullscreen() {
-  const elem = document.getElementById("flipbook");
-  if (!document.fullscreenElement) {
-    elem.requestFullscreen();
-  } else {
-    document.exitFullscreen();
-  }
-}
-</script>
-
-</body>
-</html>
