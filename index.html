@@ -4,10 +4,8 @@
 <meta charset="utf-8">
 <title>Flipbook</title>
 
-<!-- jQuery (required for Turn.js) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Turn.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
 
 <style>
@@ -92,19 +90,17 @@ $(document).ready(function() {
     width: 900,
     height: 600,
     autoCenter: true,
-    display: 'double',   // ✅ Real 2-page spread
+    display: 'double',    // ✅ Real 2-page spread
     elevation: 50,
     gradients: true,
     duration: 800
   });
 
-  // Zoom on click
-  let zoomed = false;
-  $('#flipbook').on('click', function() {
-    zoomed = !zoomed;
-    $(this).css('transform', zoomed ? 'scale(1.8)' : 'scale(1)');
-    $(this).css('transition', 'transform 0.3s ease');
-  });
+  // 
+  // --- ZOOM SCRIPT REMOVED ---
+  // The 'Zoom on click' script that was here was
+  // conflicting with turn.js's click event and has been removed.
+  //
 
 });
 
