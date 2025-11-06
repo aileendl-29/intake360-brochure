@@ -11,7 +11,7 @@
 <style>
 body {
   margin: 0;
-  background: #ffffff; /* white background to blend with website */
+  background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -20,35 +20,32 @@ body {
 
 #flipbook-wrapper {
   width: 100%;
-  max-width: 1000px; /* ✅ controls size inside website */
+  max-width: 1000px;
   margin: auto;
   display: flex;
   justify-content: center;
 }
 
-/* --- THIS IS THE CRITICAL FIX ---
-  You MUST give the flipbook a size in CSS that
-  matches the size in your JavaScript.
-*/
+/* This gives the book its size */
 #flipbook {
   width: 900px;
   height: 600px;
 }
 
-/* This makes the image fill its page */
+/* This makes images fill their page */
 #flipbook img {
   width: 100%;
   height: 100%;
 }
 
-/* This gives your new blank covers a white background (replaces the :has() rule) */
+/* This makes the blank covers white */
 #flipbook > div:first-child,
 #flipbook > div:last-child {
   background: #fff;
 }
 
 
-/* Fullscreen Button (optional on website) */
+/* Fullscreen Button */
 #fullscreen-btn {
   position: fixed;
   bottom: 20px;
@@ -65,19 +62,13 @@ body {
 
 /* Mobile optimization */
 @media (max-width: 920px) {
-  /* On mobile, we make the wrapper 100% */
   #flipbook-wrapper {
     max-width: 100%;
     padding: 0 10px;
   }
-
-  /* And we scale the book down to fit the screen.
-    The height will adjust automatically.
-  */
   #flipbook {
     width: 100%;
     height: auto;
-    /* We re-add the aspect ratio for mobile */
     aspect-ratio: 3 / 2; 
   }
 }
@@ -89,7 +80,8 @@ body {
 
 <div id="flipbook-wrapper">
   <div id="flipbook">
-    <div></div> <div class="double"><img src="page_1.jpg"></div>
+    <div></div> <div class="double"><img src="https://via.placeholder.com/900x600/CCCCCC/808080?text=TEST+IMAGE+(PAGE+1)"></div>
+    
     <div class="double"><img src="page_2.jpg"></div>
     <div class="double"><img src="page_3.jpg"></div>
     <div class="double"><img src="page_4.jpg"></div>
@@ -103,37 +95,29 @@ body {
 <script>
 $(document).ready(function() {
 
-  // This script initializes the flipbook
   $('#flipbook').turn({
     width: 900,
     height: 600,
     autoCenter: true,
-    display: 'double',    // ✅ Real 2-page spread
+    display: 'double',
     elevation: 50,
     gradients: true,
     duration: 800
   });
 
-  /* This handles responsiveness. 
-    When the window resizes, it checks if it's a mobile
-    size and adjusts the book's properties.
-  */
+  /* Responsiveness */
   $(window).on('resize', function() {
-    // Get the new width of the wrapper
     var wrapperWidth = $('#flipbook-wrapper').width();
-    
     if (wrapperWidth < 900) {
-      // If screen is small, set book size to wrapper width
-      $('#flipbook').turn('size', wrapperWidth, wrapperWidth / 1.5); // 1.5 is 3:2 ratio
+      $('#flipbook').turn('size', wrapperWidth, wrapperWidth / 1.5);
     } else {
-      // Otherwise, set it back to default
       $('#flipbook').turn('size', 900, 600);
     }
-  }).trigger('resize'); // Run once on page load
+  }).trigger('resize');
 
 });
 
-// Fullscreen toggle function
+// Fullscreen function
 function toggleFullscreen() {
   const elem = document.getElementById("flipbook");
   if (!document.fullscreenElement) {
