@@ -22,7 +22,7 @@ body {
 #flipbook-wrapper {
   width: 100%;
   /* Make the max-width larger to hold the new book */
-  max-width: 1300px; 
+  max-width: 1600px; /* Increased from 1300px */
   margin: auto;
   display: flex;
   justify-content: center;
@@ -32,8 +32,8 @@ body {
 
 #flipbook {
   /* --- SIZE CHANGE 1 --- */
-  width: 1200px;
-  height: 800px;
+  width: 1500px;
+  height: 1000px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
 }
 
@@ -91,7 +91,7 @@ body {
 
 /* Mobile optimization */
 /* --- SIZE CHANGE 2 --- */
-@media (max-width: 1220px) { /* Updated from 920px */
+@media (max-width: 1520px) { /* Updated from 1220px */
   #flipbook-wrapper {
     max-width: 100%;
     padding: 0 10px;
@@ -99,7 +99,7 @@ body {
   #flipbook {
     width: 100%;
     height: auto;
-    aspect-ratio: 3 / 2; /* 1200 / 800 = 3 / 2 */
+    aspect-ratio: 3 / 2; /* 1500 / 1000 = 3 / 2 */
   }
  
   #prev-btn { left: 15px; }
@@ -119,10 +119,8 @@ body {
     <div class="double"><img src="page_1.jpg"></div>
     <div class="double"><img src="page_2.jpg"></div>
     <div class="double"><img src="page_3.jpg"></div>
-    
     <div class="double"><img src="Image4FIX.png"></div> 
-    
-    </div>
+  </div>
 
   <button id="next-btn">&gt;</button>
 
@@ -135,8 +133,8 @@ $(document).ready(function() {
 
   $('#flipbook').turn({
     /* --- SIZE CHANGE 3 --- */
-    width: 1200,
-    height: 800,
+    width: 1500,
+    height: 1000,
     autoCenter: true,
     display: 'double',
     elevation: 50,
@@ -149,10 +147,10 @@ $(document).ready(function() {
     var wrapperWidth = $('#flipbook-wrapper').width();
    
     /* --- SIZE CHANGE 4 --- */
-    if (wrapperWidth < 1200) {
+    if (wrapperWidth < 1500) {
       $('#flipbook').turn('size', wrapperWidth, wrapperWidth / 1.5); // 1.5 is 3:2 ratio
     } else {
-      $('#flipbook').turn('size', 1200, 800);
+      $('#flipbook').turn('size', 1500, 1000);
     }
   }).trigger('resize');
  
